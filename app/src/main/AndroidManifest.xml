@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.firsttry">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".NavigationDrawer"
+            android:label="@string/title_activity_navigation_drawer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".WochentageUebersicht"
+            android:label="@string/title_activity_wochentage_uebersicht"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".WochentageEinzelansicht"
+            android:label="@string/title_activity_wochentage_einzelansicht"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ToDoUebersicht"
+            android:label="@string/title_activity_to_do_uebersicht"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NeuesToDo"
+            android:label="@string/title_activity_neues_to_do"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ToDoEinzelansicht"
+            android:label="@string/title_activity_to_do_einzelansicht"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AppDevelopment"
+            android:label="@string/title_activity_app_development"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
