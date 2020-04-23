@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.firsttry.ui.SettingsActivity;
@@ -32,15 +33,19 @@ public class MainActivity extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, ToDoUebersicht.class);
-                startActivity(i);
-                finish();
+                EditText n = findViewById(R.id.edit_name);
+                EditText p = findViewById(R.id.edit_password);
+                if (n.getText().toString().equals("Luca") && p.getText().toString().equals("1234")){
+
+                    Intent i = new Intent(MainActivity.this, ToDoUebersicht.class);
+                    startActivity(i);
+                    finish();
+
+                } else {
+                    Toast.makeText(MainActivity.this, "Sorry, Username or Password are incorrect", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        if (BuildConfig.DEBUG){
-            Toast.makeText(getBaseContext(), "enter your data now", Toast.LENGTH_SHORT).show();
-        };
-
     }
 
     @Override

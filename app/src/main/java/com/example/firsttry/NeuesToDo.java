@@ -36,15 +36,6 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.logo);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Funktion: Speichern", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
 
         neuesToDo = findViewById(R.id.neues_todo);
         btn = findViewById(R.id.add_btn);
@@ -57,6 +48,7 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
 
         btn.setOnClickListener(this);
         itemsList.setOnItemClickListener(this);
+
     }
 
 
@@ -72,6 +64,8 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
 
 
                 Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
+
         }
 
     }
@@ -83,4 +77,7 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
 
         Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
     }
+
+
+
 }

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.firsttry.ui.FileHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -42,8 +43,13 @@ public class ToDoUebersicht extends AppCompatActivity {
         });
 
 
-        //Button button_neuestodo = findViewById(R.id.button_neuestodo);
-        //button_neuestodo.setOnClickListener(new View.OnClickListener(){
+        itemsList = findViewById(R.id.itemsList);
+
+        items = FileHelper.readData(this);
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        itemsList.setAdapter(adapter);
+
 
 
         Button button_wochentageuebersicht = findViewById(R.id.button_wochentageuebersicht);
@@ -65,5 +71,7 @@ public class ToDoUebersicht extends AppCompatActivity {
         });
 
     }
+
+
 
 }
