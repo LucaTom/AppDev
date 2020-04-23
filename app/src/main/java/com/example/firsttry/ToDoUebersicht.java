@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +20,6 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 public class ToDoUebersicht extends AppCompatActivity {
-
 
     private ListView itemsList;
 
@@ -43,15 +43,12 @@ public class ToDoUebersicht extends AppCompatActivity {
             }
         });
 
-
         itemsList = findViewById(R.id.itemsList);
 
         items = FileHelper.readData(this);
 
         adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
-
-
 
         Button button_wochentageuebersicht = findViewById(R.id.button_wochentageuebersicht);
         button_wochentageuebersicht.setOnClickListener(new View.OnClickListener(){
@@ -70,9 +67,11 @@ public class ToDoUebersicht extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("LIFECYCLE", "Resume");
+    }
 }

@@ -16,20 +16,19 @@ import java.util.List;
 
 public class FileReaderAdapter extends ArrayAdapter<String> {
 
-
     public FileReaderAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<String> objects) {
         super(context, resource, 0, objects);
 
     }
 
-    public void notifyDataSetChanged(Context context) {
+    public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
 
         ArrayList<String> items = new ArrayList<>();
         for (int i=0; i < super.getCount(); i ++) {
-            items.add((String)getItem(i));
+            items.add(getItem(i));
         }
-        FileHelper.writeData(items, context);
+        FileHelper.writeData(items, getContext());
     }
 
 }

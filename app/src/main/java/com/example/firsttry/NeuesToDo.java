@@ -37,21 +37,18 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.logo);
 
-
         neuesToDo = findViewById(R.id.neues_todo);
         btn = findViewById(R.id.add_btn);
         itemsList = findViewById(R.id.itemsList);
 
         items = FileHelper.readData(this);
 
-        adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
+        adapter = new FileReaderAdapter(this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
 
         btn.setOnClickListener(this);
         itemsList.setOnItemClickListener(this);
-
     }
-
 
     @Override
     public void onClick(View v) {
@@ -61,20 +58,15 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
                 adapter.add(itemEntered);
                 neuesToDo.setText("");
 
-                FileHelper.writeData(items, this);
-
-
                 Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged(this);
-
+                adapter.notifyDataSetChanged();
         }
-
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         items.remove(position);
-        adapter.notifyDataSetChanged(this);
+        adapter.notifyDataSetChanged();
 
         Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
     }
