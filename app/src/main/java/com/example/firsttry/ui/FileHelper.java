@@ -1,6 +1,7 @@
 package com.example.firsttry.ui;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class FileHelper {
 
     public static final String FILENAME = "listinfo.dat";
+    private static final String TAG = "FileHelper";
 
     public static void writeData(ArrayList<String> items, Context context){
 
@@ -22,6 +24,7 @@ public class FileHelper {
             FileOutputStream fos =context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(items);
+            Log.i(TAG, "Writing object: " + items.toString());
             oos.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -36,6 +39,7 @@ public class FileHelper {
             FileInputStream fis =context.openFileInput(FILENAME);
             ObjectInputStream ois = new ObjectInputStream(fis);
             itemsList = (ArrayList<String>) ois.readObject();
+            Log.i(TAG, "Read object: " + itemsList.toString());
         }catch (FileNotFoundException e){
 
             itemsList = new ArrayList<>();
