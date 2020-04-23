@@ -3,6 +3,7 @@ package com.example.firsttry;
 import android.os.Bundle;
 
 import com.example.firsttry.ui.FileHelper;
+import com.example.firsttry.ui.FileReaderAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -26,7 +27,7 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
     private ListView itemsList;
 
     private ArrayList<String> items;
-    private ArrayAdapter<String> adapter;
+    private FileReaderAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
 
         items = FileHelper.readData(this);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
 
         btn.setOnClickListener(this);
@@ -64,7 +65,7 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
 
 
                 Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged(this);
 
         }
 
@@ -73,7 +74,7 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         items.remove(position);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged(this);
 
         Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
     }

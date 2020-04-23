@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.firsttry.ui.FileHelper;
+import com.example.firsttry.ui.FileReaderAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,7 +24,7 @@ public class ToDoUebersicht extends AppCompatActivity {
     private ListView itemsList;
 
     private ArrayList<String> items;
-    private ArrayAdapter<String> adapter;
+    private FileReaderAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class ToDoUebersicht extends AppCompatActivity {
 
         items = FileHelper.readData(this);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
 
 
