@@ -72,6 +72,8 @@ public class ToDoUebersicht extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("LIFECYCLE", "Resume");
+        items = FileHelper.readData(this);
+        adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
+        itemsList.setAdapter(adapter);
     }
 }
