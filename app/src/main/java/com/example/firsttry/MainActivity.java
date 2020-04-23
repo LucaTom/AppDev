@@ -13,6 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.firsttry.ui.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,22 +28,25 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setLogo(R.drawable.logo);
         toolbar.getOverflowIcon().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
 
-        Button button_startnow = findViewById(R.id.button_startnow);
-        button_startnow.setOnClickListener(new View.OnClickListener(){
+        Button button_login= findViewById(R.id.button_login);
+        button_login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, ToDoUebersicht.class);
                 startActivity(i);
-
+                finish();
             }
         });
+        if (BuildConfig.DEBUG){
+            Toast.makeText(getBaseContext(), "enter your data now", Toast.LENGTH_SHORT).show();
+        };
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.navigation_drawer, menu);
         return true;
     }
 
@@ -53,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent= new Intent (this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
