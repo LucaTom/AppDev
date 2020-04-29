@@ -15,14 +15,14 @@ import java.util.List;
 
 
 
-public class FileReaderAdapter<Todo extends Jsonable> extends ArrayAdapter<Todo> {
+public class FileReaderAdapter extends ArrayAdapter<Todo> {
 
 
     private ArrayList<Todo> items;
     private FileHelper<Todo> fileHelper;
 
-    public FileReaderAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Todo> Todo) {
-        super(context, resource, 0, Todo);
+    public FileReaderAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Todo> todos) {
+        super(context, resource, 0, todos);
     }
 
     public void notifyDataSetChanged() {
