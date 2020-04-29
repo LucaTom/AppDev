@@ -2,17 +2,15 @@ package com.example.firsttry;
 
 import android.os.Bundle;
 
-import com.example.firsttry.ui.FileHelper;
+import com.example.firsttry.serialize.FileHelper;
+import com.example.firsttry.serialize.Todo;
 import com.example.firsttry.ui.FileReaderAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -26,8 +24,9 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
     private Button btn;
     private ListView itemsList;
 
-    private ArrayList<String> items;
+    private ArrayList<Todo> items;
     private FileReaderAdapter adapter;
+    private FileHelper<Todo> fileHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +39,9 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
         neuesToDo = findViewById(R.id.neues_todo);
         btn = findViewById(R.id.add_btn);
         itemsList = findViewById(R.id.itemsList);
+        fileHelper = new FileHelper<>(this, Todo.class);
 
-        items = FileHelper.readData(this);
+        items = fileHelper.readData();
 
         adapter = new FileReaderAdapter(this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
