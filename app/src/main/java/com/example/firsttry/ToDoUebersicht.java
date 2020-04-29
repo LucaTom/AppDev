@@ -6,25 +6,23 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.firsttry.ui.FileHelper;
+import com.example.firsttry.serialize.FileHelper;
+import com.example.firsttry.serialize.Todo;
 import com.example.firsttry.ui.FileReaderAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 public class ToDoUebersicht extends AppCompatActivity {
 
     private ListView itemsList;
-
-    private ArrayList<String> items;
+    private ArrayList<Todo> items;
     private FileReaderAdapter adapter;
+    private FileHelper<Todo> fileHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +43,8 @@ public class ToDoUebersicht extends AppCompatActivity {
 
         itemsList = findViewById(R.id.itemsList);
 
-        items = FileHelper.readData(this);
+        fileHelper = new FileHelper<>(this, Todo.class);
+        items = fileHelper.readData();
 
         adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
@@ -72,7 +71,7 @@ public class ToDoUebersicht extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        items = FileHelper.readData(this);
+        items = fileHelper.readData();
         adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
     }
