@@ -46,7 +46,7 @@ public class ToDoUebersicht extends AppCompatActivity {
         fileHelper = new FileHelper<>(this, Todo.class);
         items = fileHelper.readData();
 
-        adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
+        adapter = new FileReaderAdapter (this, R.layout.content_lvi_todoliste, items);
         itemsList.setAdapter(adapter);
 
         Button button_wochentageuebersicht = findViewById(R.id.button_wochentageuebersicht);
@@ -72,7 +72,7 @@ public class ToDoUebersicht extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         items = fileHelper.readData();
-        adapter = new FileReaderAdapter (this, android.R.layout.simple_list_item_1, items);
+        adapter = new FileReaderAdapter (this, R.layout.content_lvi_todoliste, items);
         itemsList.setAdapter(adapter);
     }
 }

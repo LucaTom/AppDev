@@ -24,7 +24,7 @@
         android:id="@+id/spDue"
         android:layout_width="100dp"
         android:layout_height="38dp"
-        android:entries="Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"
+        android:entries="Monday, Tuesday, Wednesday"
         app:layout_constraintStart_toEndOf="@+id/txtDescription"
         tools:layout_editor_absoluteY="73dp" />
 
