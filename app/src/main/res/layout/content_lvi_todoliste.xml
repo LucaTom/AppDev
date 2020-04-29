@@ -2,35 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="433dp"
-        android:layout_height="270dp">
+    <CheckBox
+        android:id="@+id/chxDone"
+        android:layout_width="57dp"
+        android:layout_height="51dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="73dp" />
 
-        <CheckBox
-            android:id="@+id/chxDone"
-            android:layout_width="43dp"
-            android:layout_height="40dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="73dp" />
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="116dp"
+        android:layout_height="40dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/chxDone"
+        tools:layout_editor_absoluteY="73dp" />
 
-        <TextView
-            android:id="@+id/txtDescription"
-            android:layout_width="116dp"
-            android:layout_height="40dp"
-            android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/chxDone"
-            tools:layout_editor_absoluteY="73dp" />
-
-        <Spinner
-            android:id="@+id/spDue"
-            android:layout_width="100dp"
-            android:layout_height="38dp"
-            app:layout_constraintStart_toEndOf="@+id/txtDescription"
-            tools:layout_editor_absoluteY="73dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <Spinner
+        android:id="@+id/spDue"
+        android:layout_width="100dp"
+        android:layout_height="38dp"
+        android:entries="Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"
+        app:layout_constraintStart_toEndOf="@+id/txtDescription"
+        tools:layout_editor_absoluteY="73dp" />
 
 </LinearLayout>

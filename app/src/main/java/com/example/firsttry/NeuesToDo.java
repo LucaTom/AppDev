@@ -43,7 +43,7 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
 
         items = fileHelper.readData();
 
-        adapter = new FileReaderAdapter(this, android.R.layout.simple_list_item_1, items);
+        adapter = new FileReaderAdapter(this, R.layout.content_lvi_todoliste, items);
         itemsList.setAdapter(adapter);
 
         btn.setOnClickListener(this);
@@ -55,7 +55,13 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
         switch(v.getId()){
             case R.id.add_btn:
                 String itemEntered = neuesToDo.getText().toString();
-                adapter.add(itemEntered);
+
+                Todo todo = new Todo();
+                todo.done = false;
+                todo.description = itemEntered;
+                todo.due = "Monday";
+
+                adapter.add(todo);
                 neuesToDo.setText("");
 
                 Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();

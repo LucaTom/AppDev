@@ -6,7 +6,7 @@ package com.example.firsttry.serialize;
 public final class Todo implements Jsonable {
 
     public String description;
-    public Day due;
+    public String due;
     public boolean done = false;
 
     @Override
@@ -14,7 +14,7 @@ public final class Todo implements Jsonable {
     public JSONObject json() throws JSONException {
         JSONObject result = new JSONObject();
         result.put("description", description);
-        result.put("due", due.getDay());
+        result.put("due", due);
         result.put("done", done);
         return result;
     }
@@ -23,14 +23,9 @@ public final class Todo implements Jsonable {
     //schreiben-Funktion:
     public Todo fromJson(JSONObject json) throws JSONException {
         this.description = json.getString(description);
-        this.due = Day.valueOf(json.getString("due"));
+        this.due = json.getString("due");
         this.done = json.getBoolean("done");
         return this;
     }
 
-    public static enum Day {
-        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
-
-        public String getDay() { return this.name(); }
-    }
 }
