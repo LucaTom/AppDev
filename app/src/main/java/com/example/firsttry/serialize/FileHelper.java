@@ -1,6 +1,7 @@
 package com.example.firsttry.serialize;
 
         import android.content.Context;
+        import android.util.Log;
 
         import org.json.JSONArray;
         import org.json.JSONException;
@@ -12,6 +13,7 @@ package com.example.firsttry.serialize;
         import java.io.FileWriter;
         import java.io.IOException;
         import java.io.OutputStreamWriter;
+        import java.io.Writer;
         import java.nio.charset.StandardCharsets;
         import java.util.ArrayList;
 
@@ -46,7 +48,7 @@ public class FileHelper<E extends Jsonable> {
             e.printStackTrace();
             return;
         }
-        try (FileWriter fw = (FileWriter) new OutputStreamWriter(fos)){
+        try (Writer fw = new OutputStreamWriter(fos)){
             JSONArray jsonArray = new JSONArray();
             for(E e : items)
                 jsonArray.put(e.json());
@@ -60,6 +62,19 @@ public class FileHelper<E extends Jsonable> {
     }
 
     public ArrayList<E> readData() {
+        /*ArrayList<E> test = new ArrayList<>();
+        try {
+            E e = (E) cls.newInstance();
+            Todo t = (Todo) e;
+            t.description = "Test Todo";
+            t.due = "Monday";
+            t.done = false;
+            test.add((E) t);
+            writeData(test);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }*/
+
         ArrayList<E> items = new ArrayList<>();
         try {
             FileInputStream fis = context.openFileInput(FILENAME);
@@ -67,14 +82,15 @@ public class FileHelper<E extends Jsonable> {
             byte[] bytes = new byte[size];
             fis.read(bytes, 0, size);
             String content = new String(bytes, StandardCharsets.UTF_8);
+            Log.d("FileHelper", "test" + content);
             JSONObject json = new JSONObject(content);
             JSONArray array = json.getJSONArray("todos");
-            for(int i = 0; i < array.length(); i++) {
+            for (int i = 0; i < array.length(); i++) {
                 JSONObject todojson = (JSONObject) array.get(i);
                 E e = (E) cls.newInstance().fromJson(todojson);
                 items.add(e);
             }
-        } catch(IOException | JSONException e) {
+       } catch(IOException | JSONException e) {
             e.printStackTrace();
             return null;
         } catch (IllegalAccessException e) {

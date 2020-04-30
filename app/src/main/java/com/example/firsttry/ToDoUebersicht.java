@@ -1,8 +1,10 @@
 package com.example.firsttry;
 
 import android.content.Intent;
+import android.net.nsd.NsdManager;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +40,7 @@ public class ToDoUebersicht extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ToDoUebersicht.this, NeuesToDo.class);
-                startActivity(i);
+                startActivityForResult(i, 21);
             }
         });
 
@@ -75,5 +77,14 @@ public class ToDoUebersicht extends AppCompatActivity {
         items = fileHelper.readData();
         adapter = new FileReaderAdapter (this, R.layout.content_lvi_todoliste, items);
         itemsList.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 21 && resultCode == RESULT_OK) {
+            adapter.add((Todo) data.getParcelableExtra("newtodo"));
+            adapter.notifyDataSetChanged();
+        }
     }
 }

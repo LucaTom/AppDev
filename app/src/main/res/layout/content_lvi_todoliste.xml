@@ -24,7 +24,7 @@
     // https://stackoverflow.com/questions/4029261/populating-spinner-directly-in-the-layout-xml
 
     <Spinner
-        android:id="@+id/spDue"
+        android:id="@+id/newDue"
         android:layout_width="100dp"
         android:layout_height="38dp"
         android:entries="@array/DueDay"

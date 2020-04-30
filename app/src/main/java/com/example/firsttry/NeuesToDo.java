@@ -1,5 +1,6 @@
 package com.example.firsttry;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.firsttry.serialize.FileHelper;
@@ -14,18 +15,17 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class NeuesToDo extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class NeuesToDo extends AppCompatActivity implements View.OnClickListener {
 
     private EditText neuesToDo;
+    private Spinner newDue;
     private Button btn;
-    private ListView itemsList;
 
-    private ArrayList<Todo> items;
-    private FileReaderAdapter adapter;
     private FileHelper<Todo> fileHelper;
 
     @Override
@@ -36,46 +36,42 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.logo);
 
-        neuesToDo = findViewById(R.id.neues_todo);
-        btn = findViewById(R.id.add_btn);
-        itemsList = findViewById(R.id.itemsList);
+        neuesToDo = findViewById(R.id.newDesc);
+        newDue = findViewById(R.id.newDue);
+        btn = findViewById(R.id.btnAdd);
         fileHelper = new FileHelper<>(this, Todo.class);
 
-        items = fileHelper.readData();
-
-        adapter = new FileReaderAdapter(this, R.layout.content_lvi_todoliste, items);
-        itemsList.setAdapter(adapter);
-
         btn.setOnClickListener(this);
-        itemsList.setOnItemClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.add_btn:
-                String itemEntered = neuesToDo.getText().toString();
+            case R.id.btnAdd:
+                String todoEntered = neuesToDo.getText().toString();
+                String duedateEntered = newDue.getSelectedItem().toString();
 
                 Todo todo = new Todo();
                 todo.done = false;
-                todo.description = itemEntered;
-                todo.due = "Monday";
+                todo.description = todoEntered;
+                todo.due = duedateEntered;
 
-                adapter.add(todo);
                 neuesToDo.setText("");
 
-                Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
+                Intent i = new Intent();
+                i.putExtra("newtodo", todo);
+                setResult(RESULT_OK, i);
+                finish();
         }
     }
 
-    @Override
+    /*@Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         items.remove(position);
         adapter.notifyDataSetChanged();
 
         Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
 
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText n = findViewById(R.id.edit_name);
                 EditText p = findViewById(R.id.edit_password);
                 if (n.getText().toString().equals("Luca") && p.getText().toString().equals("1234")){
-
+                    Log.d("Test", "Login Erfolgreich");
                     Intent i = new Intent(MainActivity.this, ToDoUebersicht.class);
                     startActivity(i);
                     finish();

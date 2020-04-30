@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 
 import com.example.firsttry.R;
 import com.example.firsttry.serialize.FileHelper;
-import com.example.firsttry.serialize.Jsonable;
 import com.example.firsttry.serialize.Todo;
 
 import java.util.ArrayList;
@@ -31,13 +30,13 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
         private Spinner due;
     }
 
-    private ArrayList<Todo> items;
     private FileHelper<Todo> fileHelper;
 
 
 
     public FileReaderAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Todo> todos) {
         super(context, resource, 0, todos);
+        fileHelper = new FileHelper<>(context, Todo.class);
     }
 
 
@@ -50,7 +49,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder = new ViewHolder();
             viewHolder.done = convertView.findViewById(R.id.chxDone);
             viewHolder.description = convertView.findViewById(R.id.txtDescription);
-            viewHolder.due = convertView.findViewById(R.id.spDue);
+            viewHolder.due = convertView.findViewById(R.id.newDue);
 
             convertView.setTag(viewHolder);
         } else {

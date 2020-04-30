@@ -9,45 +9,38 @@
     tools:showIn="@layout/activity_neues_to_do">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
+    <EditText
+        android:id="@+id/newDesc"
+        android:layout_width="253dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="60dp"
+        android:layout_weight="4"
+        android:hint="Enter item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/neues_todo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:hint="Enter item" />
+    <Spinner
+        android:id="@+id/newDue"
+        android:entries="@array/DueDay"
+        android:layout_width="206dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newDesc" />
 
-        <Button
-            android:id="@+id/add_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="add" />
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/itemsList"
-        android:layout_width="362dp"
-        android:layout_height="299dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="76dp"
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/newDue"
+        app:layout_constraintVertical_bias="0.064" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
