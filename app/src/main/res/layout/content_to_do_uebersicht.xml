@@ -23,6 +23,7 @@
         android:id="@+id/itemsList"
         android:layout_width="339dp"
         android:layout_height="451dp"
+        android:descendantFocusability="blocksDescendants"
         app:layout_constraintBottom_toTopOf="@+id/button_wochentageuebersicht"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
