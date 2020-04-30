@@ -34,6 +34,8 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
     private ArrayList<Todo> items;
     private FileHelper<Todo> fileHelper;
 
+
+
     public FileReaderAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Todo> todos) {
         super(context, resource, 0, todos);
     }
@@ -47,7 +49,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
 
             viewHolder = new ViewHolder();
             viewHolder.done = convertView.findViewById(R.id.chxDone);
-            viewHolder.description = (TextView) convertView.findViewById(R.id.txtDescription);
+            viewHolder.description = convertView.findViewById(R.id.txtDescription);
             viewHolder.due = convertView.findViewById(R.id.spDue);
 
             convertView.setTag(viewHolder);
@@ -70,7 +72,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
 
-        ArrayList<Todo> items = new ArrayList<>();
+       ArrayList<Todo> items = new ArrayList<>();
 
         for (int i=0; i < super.getCount(); i ++) {
             items.add(getItem(i));
