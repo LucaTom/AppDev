@@ -12,23 +12,44 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="73dp" />
 
+    // DueDay Array:
+    // https://stackoverflow.com/questions/4029261/populating-spinner-directly-in-the-layout-xml
+
     <TextView
         android:id="@+id/txtDescription"
-        android:layout_width="116dp"
-        android:layout_height="40dp"
+        android:layout_width="92dp"
+        android:layout_height="47dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/chxDone"
         tools:layout_editor_absoluteY="73dp" />
 
-    // DueDay Array:
-    // https://stackoverflow.com/questions/4029261/populating-spinner-directly-in-the-layout-xml
-
     <Spinner
         android:id="@+id/newDue"
-        android:layout_width="100dp"
-        android:layout_height="38dp"
-        android:entries="@array/DueDay"
-        app:layout_constraintStart_toEndOf="@+id/txtDescription"
-        tools:layout_editor_absoluteY="73dp" />
+        android:layout_width="121dp"
+        android:layout_height="56dp"
+        android:layout_weight="1"
+        android:entries="@array/DueDay" />
+
+    <TextView
+        android:id="@+id/txtDue"
+        android:layout_width="114dp"
+        android:layout_height="36dp"
+        android:layout_weight="1"
+        android:text="Day" />
+
+    <ImageButton
+        android:id="@+id/btnEdit"
+        android:layout_width="98dp"
+        android:layout_height="62dp"
+        android:layout_weight="1"
+        android:src="@android:drawable/ic_menu_edit" />
+
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="97dp"
+        android:layout_height="62dp"
+        android:layout_weight="1"
+        android:src="@android:drawable/ic_menu_delete" />
 
 </LinearLayout>

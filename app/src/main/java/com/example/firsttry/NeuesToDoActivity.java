@@ -5,22 +5,16 @@ import android.os.Bundle;
 
 import com.example.firsttry.serialize.FileHelper;
 import com.example.firsttry.serialize.Todo;
-import com.example.firsttry.ui.FileReaderAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-
-public class NeuesToDo extends AppCompatActivity implements View.OnClickListener {
+public class NeuesToDoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText neuesToDo;
     private Spinner newDue;
@@ -57,6 +51,8 @@ public class NeuesToDo extends AppCompatActivity implements View.OnClickListener
                 todo.due = duedateEntered;
 
                 neuesToDo.setText("");
+
+               // https://stackoverflow.com/questions/15393899/how-to-close-activity-and-go-back-to-previous-activity-in-android
 
                 Intent i = new Intent();
                 i.putExtra("newtodo", todo);

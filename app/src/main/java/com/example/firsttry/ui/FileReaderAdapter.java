@@ -1,18 +1,26 @@
 package com.example.firsttry.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
 import com.example.firsttry.R;
+import com.example.firsttry.ToDoEinzelansicht;
+import com.example.firsttry.ToDoUebersichtActivity;
+import com.example.firsttry.WochentageUebersichtActivity;
 import com.example.firsttry.serialize.FileHelper;
 import com.example.firsttry.serialize.Todo;
 
@@ -21,13 +29,15 @@ import java.util.List;
 
 
 
-public class FileReaderAdapter extends ArrayAdapter<Todo> {
+public class FileReaderAdapter extends ArrayAdapter<Todo> implements AdapterView.OnItemSelectedListener {
 
 
     private static class ViewHolder {
         private CheckBox done;
         private TextView description;
         private Spinner due;
+        private TextView duedate;
+        //private Button delete;
     }
 
     private FileHelper<Todo> fileHelper;
@@ -50,6 +60,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder.done = convertView.findViewById(R.id.chxDone);
             viewHolder.description = convertView.findViewById(R.id.txtDescription);
             viewHolder.due = convertView.findViewById(R.id.newDue);
+           // viewHolder.duedate = convertView.findViewById(R.id.newDue);
 
             convertView.setTag(viewHolder);
         } else {
@@ -62,11 +73,28 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder.done.setChecked(item.done);
             viewHolder.description.setText(item.description);
             viewHolder.due.getSelectedItem();
+           // String date = (String) viewHolder.due.getSelectedItem();
+           // viewHolder.duedate.setText(date);
         }
 
         return convertView;
     }
 
+
+    @Override
+    public void onItemSelected(AdapterView<?> due, View view, int position, long id) {
+        // On selecting a spinner item
+        String duedate = due.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(due.getContext(), "Selected: " + duedate, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
@@ -78,5 +106,6 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
         }
         fileHelper.writeData(items);
     }
+
 
 }
