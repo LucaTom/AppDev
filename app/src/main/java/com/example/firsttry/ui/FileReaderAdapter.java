@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +31,7 @@ import java.util.List;
 
 
 
-public class FileReaderAdapter extends ArrayAdapter<Todo> implements View.OnClickListener {
-
+public class FileReaderAdapter extends ArrayAdapter<Todo> {
 
     private static class ViewHolder {
         private CheckBox done;
@@ -39,13 +39,11 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements View.OnClic
         private Spinner due;
        // private TextView duedate;
 
-        private Button edit;
-        private Button delete;
+        private ImageButton edit;
+        private ImageButton delete;
     }
 
     private FileHelper<Todo> fileHelper;
-
-
 
     public FileReaderAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Todo> todos) {
         super(context, resource, 0, todos);
@@ -56,7 +54,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements View.OnClic
     //https://www.youtube.com/watch?v=ZEEYYvVwJGY
 
     public View getView(final int position, View convertView, ViewGroup parent){
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
         if(convertView == null) {
             convertView = LayoutInflater.from(this.getContext())
                     .inflate(R.layout.content_lvi_todoliste, parent, false);
@@ -71,8 +69,8 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements View.OnClic
             viewHolder.edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(ToDoUebersichtActivity.this, ToDoEinzelansicht.class);
-                    startActivity(i);
+                    Intent i = new Intent(getContext(), ToDoEinzelansicht.class);
+                    getContext().startActivity(i);
                 }
             });
 
@@ -80,8 +78,8 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements View.OnClic
             viewHolder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    items.remove(position);
-                    adapter.notifyDataSetChanged();
+                    remove(getItem(position));
+                    notifyDataSetChanged();
 
                     Log.i("Todo Übersicht","Todo deleted");
                 }

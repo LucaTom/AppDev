@@ -63,18 +63,6 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
 
         });
 
-
-
-        /*Button btnEdit = findViewById(R.id.btnEdit);
-        BtnEdit.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ToDoUebersichtActivity.this, ToDoEinzelansicht.class);
-                startActivity(i);
-            }
-        });
-
-         */
     }
 
     @Override
@@ -94,14 +82,6 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
         }
     }
 
-    /*@Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        items.remove(position);
-        adapter.notifyDataSetChanged();
-
-        Log.i("Todo Übersicht","Todo deleted");
-    }
-    */
 
    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
