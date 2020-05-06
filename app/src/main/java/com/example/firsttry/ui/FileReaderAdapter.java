@@ -38,6 +38,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements View.OnClic
         private TextView description;
         private Spinner due;
        // private TextView duedate;
+
         private Button edit;
         private Button delete;
     }
@@ -54,7 +55,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements View.OnClic
 
     //https://www.youtube.com/watch?v=ZEEYYvVwJGY
 
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent){
         ViewHolder viewHolder;
         if(convertView == null) {
             convertView = LayoutInflater.from(this.getContext())
