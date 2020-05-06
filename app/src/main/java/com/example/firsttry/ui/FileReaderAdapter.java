@@ -3,6 +3,7 @@ package com.example.firsttry.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,15 +30,16 @@ import java.util.List;
 
 
 
-public class FileReaderAdapter extends ArrayAdapter<Todo> implements AdapterView.OnItemSelectedListener {
+public class FileReaderAdapter extends ArrayAdapter<Todo> implements View.OnClickListener {
 
 
     private static class ViewHolder {
         private CheckBox done;
         private TextView description;
         private Spinner due;
-        private TextView duedate;
-        //private Button delete;
+       // private TextView duedate;
+        private Button edit;
+        private Button delete;
     }
 
     private FileHelper<Todo> fileHelper;
@@ -50,6 +52,8 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements AdapterView
     }
 
 
+    //https://www.youtube.com/watch?v=ZEEYYvVwJGY
+
     public View getView(int position, View convertView, ViewGroup parent){
         ViewHolder viewHolder;
         if(convertView == null) {
@@ -61,6 +65,26 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements AdapterView
             viewHolder.description = convertView.findViewById(R.id.txtDescription);
             viewHolder.due = convertView.findViewById(R.id.newDue);
            // viewHolder.duedate = convertView.findViewById(R.id.newDue);
+
+            viewHolder.edit = convertView.findViewById(R.id.btnEdit);
+            viewHolder.edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(ToDoUebersichtActivity.this, ToDoEinzelansicht.class);
+                    startActivity(i);
+                }
+            });
+
+            viewHolder.delete = convertView.findViewById(R.id.btnDelete);
+            viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    items.remove(position);
+                    adapter.notifyDataSetChanged();
+
+                    Log.i("Todo Übersicht","Todo deleted");
+                }
+            });
 
             convertView.setTag(viewHolder);
         } else {
@@ -81,20 +105,6 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> implements AdapterView
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> due, View view, int position, long id) {
-        // On selecting a spinner item
-        String duedate = due.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(due.getContext(), "Selected: " + duedate, Toast.LENGTH_LONG).show();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();

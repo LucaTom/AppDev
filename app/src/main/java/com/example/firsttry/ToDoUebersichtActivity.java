@@ -65,8 +65,8 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
 
 
 
-        /*Button button_todoeinzelansicht = findViewById(R.id.button_todoeinzelansicht);
-        button_todoeinzelansicht.setOnClickListener(new View.OnClickListener(){
+        /*Button btnEdit = findViewById(R.id.btnEdit);
+        BtnEdit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ToDoUebersichtActivity.this, ToDoEinzelansicht.class);
