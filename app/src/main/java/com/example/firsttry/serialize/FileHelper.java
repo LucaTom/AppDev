@@ -62,18 +62,6 @@ public class FileHelper<E extends Jsonable> {
     }
 
     public ArrayList<E> readData() {
-        /*ArrayList<E> test = new ArrayList<>();
-        try {
-            E e = (E) cls.newInstance();
-            Todo t = (Todo) e;
-            t.description = "Test Todo";
-            t.due = "Monday";
-            t.done = false;
-            test.add((E) t);
-            writeData(test);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }*/
 
         ArrayList<E> items = new ArrayList<>();
         try {
