@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText n = findViewById(R.id.edit_name);
                 EditText p = findViewById(R.id.edit_password);
                 if (n.getText().toString().equals("Luca") && p.getText().toString().equals("1234")){
-                    Log.d("Test", "Login Erfolgreich");
+                    Log.d("Test", "Login Successful");
                     Intent i = new Intent(MainActivity.this, ToDoUebersichtActivity.class);
                     startActivity(i);
                     finish();

@@ -41,6 +41,7 @@
         android:id="@+id/itemsList"
         android:layout_width="336dp"
         android:layout_height="381dp"
+        android:layout_marginBottom="20dp"
         android:descendantFocusability="blocksDescendants"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
