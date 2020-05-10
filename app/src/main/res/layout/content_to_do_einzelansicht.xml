@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ToDoEinzelansicht"
+    tools:context=".ToDoEinzelansichtActivity"
     tools:showIn="@layout/activity_to_do_einzelansicht">
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/editDue"
         android:layout_width="214dp"
         android:layout_height="29dp"
         android:layout_marginBottom="48dp"
@@ -24,7 +24,7 @@
         android:layout_height="35dp"
         android:layout_marginBottom="36dp"
         android:text="Detail:"
-        app:layout_constraintBottom_toTopOf="@+id/spinner2"
+        app:layout_constraintBottom_toTopOf="@+id/editDue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent" />
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/chxStatus"
+        android:id="@+id/editDone"
         android:layout_width="32dp"
         android:layout_height="42dp"
         android:layout_marginStart="76dp"
@@ -52,21 +52,21 @@
         app:layout_constraintStart_toStartOf="@+id/txtStatus" />
 
     <EditText
-        android:id="@+id/txtTodoName"
+        android:id="@+id/editName"
         android:layout_width="176dp"
         android:layout_height="36dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtTodoDetail"
+        app:layout_constraintBottom_toTopOf="@+id/editDetail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.881" />
 
     <EditText
-        android:id="@+id/txtTodoDetail"
+        android:id="@+id/editDetail"
         android:layout_width="176dp"
         android:layout_height="37dp"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner2"
+        app:layout_constraintBottom_toTopOf="@+id/editDue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/TodoDetail" />
 
@@ -76,7 +76,7 @@
         android:layout_height="33dp"
         android:text="Todo:"
         app:layout_constraintBottom_toTopOf="@+id/TodoDetail"
-        app:layout_constraintEnd_toStartOf="@+id/txtTodoName"
+        app:layout_constraintEnd_toStartOf="@+id/editName"
         app:layout_constraintHorizontal_bias="0.801"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

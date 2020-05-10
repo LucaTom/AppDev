@@ -10,8 +10,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.example.firsttry.serialize.FileHelper;
 import com.example.firsttry.serialize.Todo;
@@ -26,6 +26,7 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
     private ArrayList<Todo> items;
     private FileReaderAdapter adapter;
     private FileHelper<Todo> fileHelper;
+    private Spinner filterDue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +54,11 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
         adapter = new FileReaderAdapter (this, R.layout.content_lvi_todoliste, items);
         itemsList.setAdapter(adapter);
 
-        Button btnFilter = findViewById(R.id.btnFilter);
-        btnFilter.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ToDoUebersichtActivity.this, WochentageUebersichtActivity.class);
-                startActivity(i);
-            }
 
-        });
+        filterDue = findViewById(R.id.filterDue);
+        String filter = filterDue.getSelectedItem().toString();
+
+
 
     }
 
@@ -85,7 +82,7 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
 
    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Intent i = new Intent(ToDoUebersichtActivity.this, ToDoEinzelansicht.class);
+        Intent i = new Intent(ToDoUebersichtActivity.this, ToDoEinzelansichtActivity.class);
         startActivity(i);
 
 
