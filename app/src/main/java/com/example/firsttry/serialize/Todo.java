@@ -10,7 +10,7 @@ public final class Todo implements Jsonable, Parcelable {
 
     public String description;
     public String due;
-    public boolean done;
+    public boolean done = false;
 
     public Todo() {
 

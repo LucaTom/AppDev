@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.firsttry.serialize.Todo;
+
 public class Popupwindow extends Activity {
 
     private Button yes;
@@ -16,7 +18,7 @@ public class Popupwindow extends Activity {
     //How to create a Popup Window: https://www.youtube.com/watch?v=fn5OlqQuOCk
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_popupwindow);
@@ -35,11 +37,9 @@ public class Popupwindow extends Activity {
         yes = findViewById(R.id.btnYes);
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-               // remove(getItem(position));
-               // notifyDataSetChanged();
+            public void onClick(View v){
 
-                Log.i("Todo Übersicht","Todo deleted");
+                finish();
 
             }
         });

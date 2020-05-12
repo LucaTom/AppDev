@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
+import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 
 public class FileReaderAdapter extends ArrayAdapter<Todo> {
@@ -65,11 +66,11 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder.done.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
-                    switch(view.getId()) {
-                        case R.id.chxDone:
-                            PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putBoolean("checkbox", true).commit();
-                            break;
+                    if (viewHolder.done.isChecked()){
+                        viewHolder.done.setVisibility(View.INVISIBLE);
                     }
+                    notifyDataSetChanged();
+
                 }
             });
 
@@ -98,6 +99,12 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
                 @Override
                 public void onClick(View v) {
                     getContext().startActivity(new Intent (getContext(), Popupwindow.class));
+                    if (Popupwindow.RESULT_OK == RESULT_OK){
+                        remove(getItem(position));
+                        notifyDataSetChanged();
+
+                        Log.i("Todo Übersicht","Todo deleted");
+                    }
                 }
             });
 
@@ -114,6 +121,9 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder.due.setText(item.due);
         }
         return convertView;
+    }
+
+    private void startActivityForResult(Intent i) {
     }
 
 
