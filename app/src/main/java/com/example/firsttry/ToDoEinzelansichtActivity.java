@@ -15,8 +15,8 @@ import android.widget.Spinner;
 
 public class ToDoEinzelansichtActivity extends AppCompatActivity {
 
-    private EditText editName;
-    private EditText editDetail;
+    private String editName;
+    private String editDetail;
     private Spinner editDue;
     private CheckBox editDone;
 
@@ -28,10 +28,13 @@ public class ToDoEinzelansichtActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.logo);
 
-        editName = findViewById(R.id.editName);
-        editDetail = findViewById(R.id.editDetail);
-        editDue = findViewById(R.id.editDue);
-        editDone = findViewById(R.id.editDone);
+        /*
+        editName = findViewById(R.id.txtDescription).toString();
+        editDetail = findViewById(R.id.txtDescription).toString();
+        editDue = findViewById(R.id.txtDue);
+        editDone = findViewById(R.id.txtStatus);
+
+         */
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

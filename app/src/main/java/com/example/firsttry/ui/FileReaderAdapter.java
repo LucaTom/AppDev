@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
+import com.example.firsttry.Popupwindow;
 import com.example.firsttry.R;
 import com.example.firsttry.ToDoEinzelansichtActivity;
 import com.example.firsttry.serialize.FileHelper;
@@ -22,6 +24,7 @@ import com.example.firsttry.serialize.Todo;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
 
 
 public class FileReaderAdapter extends ArrayAdapter<Todo> {
@@ -42,7 +45,6 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
         fileHelper = new FileHelper<>(context, Todo.class);
     }
 
-
     //https://www.youtube.com/watch?v=ZEEYYvVwJGY
 
     public View getView(final int position, View convertView, ViewGroup parent){
@@ -55,6 +57,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
 
             //Checkbox:
             viewHolder.done = convertView.findViewById(R.id.chxDone);
+
 
             //Todoname:
             viewHolder.description = convertView.findViewById(R.id.txtDescription);
@@ -76,10 +79,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    remove(getItem(position));
-                    notifyDataSetChanged();
-
-                    Log.i("Todo Übersicht","Todo deleted");
+                    getContext().startActivity(new Intent (getContext(), Popupwindow.class));
                 }
             });
 
@@ -94,7 +94,6 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder.done.setChecked(item.done);
             viewHolder.description.setText(item.description);
             viewHolder.due.setText(item.due);
-
         }
 
         return convertView;
