@@ -5,15 +5,15 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/chxDone"
-        android:layout_width="57dp"
-        android:layout_height="51dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="73dp" />
-
     // DueDay Array:
     // https://stackoverflow.com/questions/4029261/populating-spinner-directly-in-the-layout-xml
+
+    <CheckBox
+        android:id="@+id/chxDone"
+        android:layout_width="46dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="73dp" />
 
     <TextView
         android:id="@+id/txtDescription"

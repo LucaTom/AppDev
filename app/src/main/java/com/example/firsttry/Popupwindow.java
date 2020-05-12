@@ -24,6 +24,7 @@ public class Popupwindow extends Activity {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
+
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
@@ -35,25 +36,24 @@ public class Popupwindow extends Activity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               // remove(getItem(position));
+               // notifyDataSetChanged();
 
-              //remove(getItem(position));
-              //notifyDataSetChanged();
-              //Log.i("Todo Übersicht","Todo deleted");
+                Log.i("Todo Übersicht","Todo deleted");
+
             }
         });
 
-
-        // No-Button notwendig? --> man kann auch einfach außerhalb des Fensters drücken
         no = findViewById(R.id.btnNo);
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Popupwindow.this, ToDoUebersichtActivity.class);
-                startActivity(i);
+               finish();
             }
         });
 
-
-
     }
+
+
 }
+

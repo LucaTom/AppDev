@@ -12,8 +12,9 @@
         android:id="@+id/editDue"
         android:layout_width="214dp"
         android:layout_height="29dp"
-        android:layout_marginBottom="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtStatus"
+        android:layout_marginBottom="276dp"
+        android:entries="@array/DueDay"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
@@ -29,32 +30,10 @@
         app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txtStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="220dp"
-        android:text="Status:"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/editDone"
-        android:layout_width="32dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginBottom="212dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txtStatus" />
-
     <EditText
         android:id="@+id/editName"
-        android:layout_width="176dp"
-        android:layout_height="36dp"
+        android:layout_width="178dp"
+        android:layout_height="49dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toTopOf="@+id/editDetail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +43,7 @@
     <EditText
         android:id="@+id/editDetail"
         android:layout_width="176dp"
-        android:layout_height="37dp"
+        android:layout_height="51dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/editDue"
         app:layout_constraintEnd_toEndOf="parent"

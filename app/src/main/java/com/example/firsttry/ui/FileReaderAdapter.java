@@ -10,14 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
+import com.example.firsttry.NeuesToDoActivity;
 import com.example.firsttry.Popupwindow;
 import com.example.firsttry.R;
 import com.example.firsttry.ToDoEinzelansichtActivity;
+import com.example.firsttry.ToDoUebersichtActivity;
 import com.example.firsttry.serialize.FileHelper;
 import com.example.firsttry.serialize.Todo;
 
@@ -57,7 +62,16 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
 
             //Checkbox:
             viewHolder.done = convertView.findViewById(R.id.chxDone);
-
+            viewHolder.done.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    switch(view.getId()) {
+                        case R.id.chxDone:
+                            PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putBoolean("checkbox", true).commit();
+                            break;
+                    }
+                }
+            });
 
             //Todoname:
             viewHolder.description = convertView.findViewById(R.id.txtDescription);
@@ -71,7 +85,11 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(getContext(), ToDoEinzelansichtActivity.class);
+                    i.putExtra("description",viewHolder.description.toString());
+                    i.putExtra("due",viewHolder.due.toString());
+                    i.putExtra("done",viewHolder.done.toString());
                     getContext().startActivity(i);
+
                 }
             });
 
@@ -95,10 +113,8 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder.description.setText(item.description);
             viewHolder.due.setText(item.due);
         }
-
         return convertView;
     }
-
 
 
     public void notifyDataSetChanged() {
@@ -111,6 +127,4 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
         }
         fileHelper.writeData(items);
     }
-
-
 }
