@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.firsttry.serialize.Todo;
+import com.example.firsttry.ui.FileReaderAdapter;
+
+import java.io.File;
 
 public class Popupwindow extends Activity {
 
@@ -38,9 +41,8 @@ public class Popupwindow extends Activity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-
+                setResult(RESULT_OK);
                 finish();
-
             }
         });
 
@@ -48,11 +50,17 @@ public class Popupwindow extends Activity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               finish();
+                setResult(RESULT_CANCELED);
+                finish();
             }
         });
 
     }
+
+
+
+
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.firsttry.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -55,6 +56,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
 
     public View getView(final int position, View convertView, ViewGroup parent){
         final ViewHolder viewHolder;
+        final Todo item = getItem(position);
         if(convertView == null) {
             convertView = LayoutInflater.from(this.getContext())
                     .inflate(R.layout.content_lvi_todoliste, parent, false);
@@ -64,14 +66,19 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             //Checkbox:
             viewHolder.done = convertView.findViewById(R.id.chxDone);
             viewHolder.done.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    if (viewHolder.done.isChecked()){
-                        viewHolder.done.setVisibility(View.INVISIBLE);
-                    }
-                    notifyDataSetChanged();
+                    @Override
+                    public void onClick(View view) {
 
-                }
+                        //viewHolder.done.setVisibility(View.INVISIBLE);
+
+                        //if(!item.done) item.done = true;
+                        //else item.done = false;
+                        //oder:
+                        //item auf das Gegenteil von sich selbst setzen!!
+                        item.done = !item.done;
+                        notifyDataSetChanged();
+
+                    }
             });
 
             //Todoname:
@@ -99,12 +106,16 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
                 @Override
                 public void onClick(View v) {
                     getContext().startActivity(new Intent (getContext(), Popupwindow.class));
-                    if (Popupwindow.RESULT_OK == RESULT_OK){
+                    Intent i = new Intent(getContext(), Popupwindow.class);
+                    ((ToDoUebersichtActivity) getContext()).startActivityForResult(i, 20);
+                    /*if (Popupwindow.RESULT_OK == RESULT_OK){
                         remove(getItem(position));
                         notifyDataSetChanged();
 
                         Log.i("Todo Übersicht","Todo deleted");
                     }
+
+                     */
                 }
             });
 
@@ -113,17 +124,13 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Todo item = getItem(position);
-
         if(item != null) {
+            //viewHolder.done.setVisibility(item.done?View.INVISIBLE:View.VISIBLE);
             viewHolder.done.setChecked(item.done);
             viewHolder.description.setText(item.description);
             viewHolder.due.setText(item.due);
         }
         return convertView;
-    }
-
-    private void startActivityForResult(Intent i) {
     }
 
 
@@ -132,9 +139,9 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
 
        ArrayList<Todo> items = new ArrayList<>();
 
-        for (int i=0; i < super.getCount(); i ++) {
+        for (int i=0; i < super.getCount(); i ++)
             items.add(getItem(i));
-        }
+
         fileHelper.writeData(items);
     }
 }

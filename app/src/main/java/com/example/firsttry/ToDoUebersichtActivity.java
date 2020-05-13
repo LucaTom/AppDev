@@ -77,6 +77,8 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
             adapter.add((Todo) data.getParcelableExtra("newtodo"));
             adapter.notifyDataSetChanged();
         }
+        else if (requestCode == 20 && resultCode == RESULT_OK) Log.d("WHOOPSIE", "");
+
     }
 
 
