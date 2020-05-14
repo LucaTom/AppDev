@@ -83,8 +83,6 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
 
                     Integer position = data.getIntExtra("position",0);
                     adapter.remove(adapter.getItem(position));
-                    //adapter.remove(adapter.getItem(data.getIntExtra("position",0)));
-
                     adapter.notifyDataSetChanged();
                     Log.d("Position:", "deleted" + position);
                     Log.i("Todo Übersicht","Todo deleted");
