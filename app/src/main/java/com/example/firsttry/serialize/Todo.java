@@ -26,8 +26,8 @@ public final class Todo implements Jsonable, Parcelable {
     //"lesen"-Funktion:
     public JSONObject json() throws JSONException {
         JSONObject result = new JSONObject();
-        result.put("description", description);
-        result.put("due", due);
+        result.put("description", description==null?"":description);
+        result.put("due", due==null?"":due);
         result.put("done", done);
         return result;
     }
@@ -36,7 +36,12 @@ public final class Todo implements Jsonable, Parcelable {
     //schreiben-Funktion:
     public Todo fromJson(JSONObject json) throws JSONException {
         this.description = json.getString("description");
-        this.due = json.getString("due");
+        try {
+            this.due = json.getString("due");
+        }catch (JSONException e){
+            this.due = "Monday";
+        }
+
         this.done = json.getBoolean("done");
         return this;
     }

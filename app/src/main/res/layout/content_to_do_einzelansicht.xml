@@ -12,33 +12,33 @@
         android:id="@+id/editDue"
         android:layout_width="214dp"
         android:layout_height="29dp"
-        android:layout_marginBottom="276dp"
+        android:layout_marginBottom="23dp"
         android:entries="@array/DueDay"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/TodoDetail"
+        android:id="@+id/todoDetail"
         android:layout_width="89dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="48dp"
         android:text="Detail:"
         app:layout_constraintBottom_toTopOf="@+id/editDue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editName"
         android:layout_width="178dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="36dp"
         app:layout_constraintBottom_toTopOf="@+id/editDetail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.881" />
+        app:layout_constraintVertical_bias="0.922" />
 
     <EditText
         android:id="@+id/editDetail"
@@ -47,18 +47,28 @@
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/editDue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TodoDetail" />
+        app:layout_constraintStart_toEndOf="@+id/todoDetail" />
 
     <TextView
-        android:id="@+id/TodoName"
+        android:id="@+id/todoName"
         android:layout_width="90dp"
         android:layout_height="33dp"
         android:text="Todo:"
-        app:layout_constraintBottom_toTopOf="@+id/TodoDetail"
+        app:layout_constraintBottom_toTopOf="@+id/todoDetail"
         app:layout_constraintEnd_toStartOf="@+id/editName"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.601"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.869" />
+        app:layout_constraintVertical_bias="0.868" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="111dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="172dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

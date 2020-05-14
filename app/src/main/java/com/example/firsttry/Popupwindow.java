@@ -37,11 +37,16 @@ public class Popupwindow extends Activity {
 
 
 
+
         yes = findViewById(R.id.btnYes);
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                setResult(RESULT_OK);
+
+                Intent i = new Intent();
+                Integer position = i.getIntExtra("index",0);
+                i.putExtra("position", position);
+                setResult(RESULT_OK, i);
                 finish();
             }
         });
@@ -50,7 +55,9 @@ public class Popupwindow extends Activity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setResult(RESULT_CANCELED);
+
+                Intent i = new Intent();
+                setResult(RESULT_CANCELED, i);
                 finish();
             }
         });

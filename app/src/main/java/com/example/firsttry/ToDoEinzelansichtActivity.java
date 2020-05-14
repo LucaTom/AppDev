@@ -3,6 +3,7 @@ package com.example.firsttry;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.firsttry.serialize.FileHelper;
 import com.example.firsttry.serialize.Todo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,11 +20,14 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class ToDoEinzelansichtActivity extends AppCompatActivity {
+public class ToDoEinzelansichtActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editName;
+    private EditText editDetail;
     private Spinner editDue;
+    private Button btnSave;
 
+    private FileHelper<Todo> fileHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +39,20 @@ public class ToDoEinzelansichtActivity extends AppCompatActivity {
 
 
         editName =findViewById(R.id.editName);
-        editDue=findViewById(R.id.editDue);
+        editDetail = findViewById(R.id.editDetail);
+        editDue =findViewById(R.id.editDue);
+        btnSave = findViewById(R.id.btnSave);
+
+        fileHelper = new FileHelper<>(this, Todo.class);
+
+        btnSave.setOnClickListener(this);
 
         Intent i = getIntent();
         String name = i.getStringExtra("description");
         String due  = i.getStringExtra("due");
 
         editName.setText(name);
-        //editDue.setText(due);
+        editDue.setSelection(due.indexOf(due));
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -50,20 +61,7 @@ public class ToDoEinzelansichtActivity extends AppCompatActivity {
             public void onClick(View view) {
                     switch(view.getId()){
                         case R.id.fab:
-
-                            String edittodoEntered = editName.getText().toString();
-                            String editduedateEntered = editDue.getSelectedItem().toString();
-
-                            Todo todo = new Todo();
-                            todo.description = edittodoEntered;
-                            todo.due = editduedateEntered;
-
-                            Intent i = new Intent();
-                            i.putExtra("changes", todo);
-                            setResult(RESULT_OK, i);
-                            finish();
                     }
-
 
                 Snackbar.make(view, "Funktion: Speichern", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
@@ -71,4 +69,25 @@ public class ToDoEinzelansichtActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btnSave:
+                String todoEdit = editName.getText().toString();
+                String detailEdit = editDetail.getText().toString();
+                String duedateEdit = editDue.getSelectedItem().toString();
+
+                Todo todo = new Todo();
+                todo.description = todoEdit;
+                //todo.detail = detailEdit;
+                //todo.due = duedateEdit;
+
+                //editDetail.setText("");
+
+                Intent i = new Intent();
+                i.putExtra("changedtodo", todo);
+                setResult(RESULT_OK, i);
+                finish();
+        }
+    }
 }

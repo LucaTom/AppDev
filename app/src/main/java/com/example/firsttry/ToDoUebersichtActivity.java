@@ -28,6 +28,7 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
     private FileHelper<Todo> fileHelper;
     private Spinner filterDue;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +58,6 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
 
         filterDue = findViewById(R.id.filterDue);
         String filter = filterDue.getSelectedItem().toString();
-
-
-
     }
 
     @Override
@@ -76,9 +74,22 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
         if(requestCode == 21 && resultCode == RESULT_OK) {
             adapter.add((Todo) data.getParcelableExtra("newtodo"));
             adapter.notifyDataSetChanged();
+        }else if (requestCode == 19 && resultCode == RESULT_OK){
+            //adapter.add((Todo) data.getStringExtra("changedtodo"));
+            //adapter.notifyDataSetChanged();
+            Log.d("WHHY", "WHHY");
         }
-        else if (requestCode == 20 && resultCode == RESULT_OK) Log.d("WHOOPSIE", "");
+        else if (requestCode == 20 && resultCode == RESULT_OK){
 
+                    Integer position = data.getIntExtra("position",0);
+                    adapter.remove(adapter.getItem(position));
+                    //adapter.remove(adapter.getItem(data.getIntExtra("position",0)));
+
+                    adapter.notifyDataSetChanged();
+                    Log.d("Position:", "deleted" + position);
+                    Log.i("Todo Übersicht","Todo deleted");
+                    Log.d("WHOOPSIE", "WHOOPSIE");
+        }
     }
 
 
@@ -86,7 +97,6 @@ public class ToDoUebersichtActivity extends AppCompatActivity implements android
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Intent i = new Intent(ToDoUebersichtActivity.this, ToDoEinzelansichtActivity.class);
         startActivity(i);
-
 
         Log.i("Todo Übersicht","Todo selected");
     }

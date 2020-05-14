@@ -70,11 +70,7 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
                     public void onClick(View view) {
 
                         //viewHolder.done.setVisibility(View.INVISIBLE);
-
-                        //if(!item.done) item.done = true;
-                        //else item.done = false;
-                        //oder:
-                        //item auf das Gegenteil von sich selbst setzen!!
+                        //Item auf das Gegenteil von sich selbst setzen!!
                         item.done = !item.done;
                         notifyDataSetChanged();
 
@@ -93,10 +89,9 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(getContext(), ToDoEinzelansichtActivity.class);
-                    i.putExtra("description",viewHolder.description.toString());
-                    i.putExtra("due",viewHolder.due.toString());
-                    i.putExtra("done",viewHolder.done.toString());
-                    getContext().startActivity(i);
+                    i.putExtra("description",item.description);
+                    i.putExtra("due",item.due);
+                    ((ToDoUebersichtActivity)getContext()).startActivityForResult(i, 19);
 
                 }
             });
@@ -105,17 +100,9 @@ public class FileReaderAdapter extends ArrayAdapter<Todo> {
             viewHolder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getContext().startActivity(new Intent (getContext(), Popupwindow.class));
                     Intent i = new Intent(getContext(), Popupwindow.class);
-                    ((ToDoUebersichtActivity) getContext()).startActivityForResult(i, 20);
-                    /*if (Popupwindow.RESULT_OK == RESULT_OK){
-                        remove(getItem(position));
-                        notifyDataSetChanged();
-
-                        Log.i("Todo Übersicht","Todo deleted");
-                    }
-
-                     */
+                    i.putExtra("index", position);
+                    ((ToDoUebersichtActivity)getContext()).startActivityForResult(i, 20);
                 }
             });
 
